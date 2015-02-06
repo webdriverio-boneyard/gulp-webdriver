@@ -1,0 +1,28 @@
+{
+  "name": "gulp-webdriver",
+  "version": "0.0.0",
+  "description": "gulp-webdriver is a Gulp plugin to run Selenium tests with Mocha and WebdriverIO",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "gulp test --debug"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webdriverio/gulp-webdriver.git"
+  },
+  "keywords": [
+    "webdriverio",
+    "gulp",
+    "selenium",
+    "webdriver",
+    "bdd",
+    "tdd",
+    "saucelabs"
+  ],
+  "author": "Christian Bromann <mail@christian-bromann.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webdriverio/gulp-webdriver/issues"
+  },
+  "homepage": "https://github.com/webdriverio/gulp-webdriver"
+}
