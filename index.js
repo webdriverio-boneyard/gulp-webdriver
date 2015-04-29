@@ -9,9 +9,7 @@ var through = require('through2'),
     webdriverio = require('webdriverio'),
     http = require('http'),
     async = require('async'),
-    hooker = require('hooker'),
     path = require('path'),
-    fs = require('fs-extra'),
     deepmerge = require('deepmerge'),
     server = null,
     isSeleniumServerRunning = false,
@@ -45,12 +43,6 @@ var GulpWebdriverIO = function() {
         tunnelFlags = (capabilities.desiredCapabilities ? capabilities.desiredCapabilities['tunnel-flags'] : []) || [],
         fd;
 
-    var queue = gutil.task._queue.filter(function(task) {
-        return typeof task.placeholder === 'undefined'
-    });
-
-    var isLastTask = queue.length === 0;
-
     /**
      * initialise tunnel
      */
@@ -74,45 +66,6 @@ var GulpWebdriverIO = function() {
      * initialize Mocha
      */
     var mocha = new Mocha(options);
-
-    gutil.file.setBase(base);
-
-    gutil.file.expand(this.data.tests).forEach(function(file) {
-        mocha.addFile(file);
-    });
-
-    /**
-     * hook process.stdout.write to save reporter output into file
-     * thanks to https://github.com/pghalliday/grunt-mocha-test
-     */
-    if (!isHookedUp) {
-        if (options.output) {
-            fs.mkdirsSync(path.dirname(options.output));
-            fd = fs.openSync(options.output, 'w');
-        }
-
-        // Hook process.stdout.write
-        hooker.hook(process.stdout, 'write', {
-
-            // This gets executed before the original process.stdout.write
-            pre: function(result) {
-
-                // Write result to file if it was opened
-                if (fd && result.slice(0, 3) !== '[D]' && result.match(/\u001b\[/g) === null) {
-                    fs.writeSync(fd, result);
-                }
-
-                // Prevent the original process.stdout.write from executing if quiet was specified
-                if (options.quiet) {
-                    return hooker.preempt();
-                }
-
-            }
-
-        });
-
-        isHookedUp = true;
-    }
 
     /**
      * temporary remove the grunt exception handler , to make tasks continue (see also)
@@ -332,28 +285,6 @@ var GulpWebdriverIO = function() {
         }, next(callback, result));
     };
 
-    /**
-     * finish grunt task
-     */
-    var finishGulpTask = function(result) {
-        var callback = arguments[arguments.length - 1];
-        gutil.log.debug('finish grunt task');
-
-        if (isLastTask) {
-
-            // close the file if it was opened
-            if (fd) {
-                fs.closeSync(fd);
-            }
-
-            // Restore process.stdout.write to its original value
-            hooker.unhook(process.stdout, 'write');
-
-        }
-
-        callback();
-    };
-
     var runWebdriverIOTests = function(callback) {
         async.waterfall([
             pingSelenium,
@@ -362,8 +293,7 @@ var GulpWebdriverIO = function() {
             runMocha,
             endSeleniumSession,
             killServer,
-            updateSauceJob,
-            finishGulpTask
+            updateSauceJob
         ], function(err) {
 
             /**
@@ -405,7 +335,8 @@ var GulpWebdriverIO = function() {
 
     return through.obj(
         function( file, enc, callback) {
-            this.push( file );
+            this.push(file);
+            mocha.addFile(file);
             callback();
         },
         runWebdriverIOTests

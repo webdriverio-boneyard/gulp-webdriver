@@ -34,8 +34,6 @@
     "saucelabs": "^0.1.1",
     "sauce-tunnel": "^2.2.3",
     "selenium-standalone": "^4.4.0",
-    "deepmerge": "^0.2.7",
-    "hooker": "^0.2.3",
-    "fs-extra": "^0.8.1"
+    "deepmerge": "^0.2.7"
   }
 }
