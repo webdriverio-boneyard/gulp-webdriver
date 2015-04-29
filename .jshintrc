@@ -1,0 +1,22 @@
+{
+  "indent": 4,
+  "undef": true,
+  "unused": true,
+  "asi": false,
+  "node": true,
+  "quotmark": "single",
+  "trailing": true,
+  "globals": {
+    "$": true,
+    "jQuery": true,
+    "define": true,
+    "require": true,
+    "describe": true,
+    "it": true,
+    "before": true,
+    "assert": true,
+    "h": true,
+    "conf": true,
+    "browser": true
+  }
+}
