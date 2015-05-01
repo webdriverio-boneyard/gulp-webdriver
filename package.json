@@ -35,5 +35,8 @@
     "sauce-tunnel": "^2.2.3",
     "selenium-standalone": "^4.4.0",
     "deepmerge": "^0.2.7"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11"
   }
 }
