@@ -37,7 +37,7 @@ gulp.task('test:chrome_ciTunnel', function() {
             version: '31',
             tags: ['chrome', 'Windows 8', '31'],
             name: 'grunt-webdriver test',
-            'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
+            'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER || Math.random().toString(),
             build: process.env.TRAVIS_BUILD_NUMBER
         }
     }));
