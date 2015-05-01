@@ -276,7 +276,6 @@ var GulpWebdriverIO = function(args) {
              * if no error happened, we are good
              */
             if(!err) {
-                gutil.log('I am done!!!')
                 return callback();
             }
 
@@ -284,7 +283,7 @@ var GulpWebdriverIO = function(args) {
 
             var logTunnelStopped = function() {
                 gutil.log('tunnel closed successfully');
-                stream.emit('error', new gutil.PluginError('gulp-mocha', err));
+                stream.emit('error', new gutil.PluginError('gulp-webdriver', err));
                 callback();
             }
 
@@ -296,7 +295,7 @@ var GulpWebdriverIO = function(args) {
                         return tunnel.stop(logTunnelStopped);
                     }
 
-                    stream.emit('error', new gutil.PluginError('gulp-mocha', err));
+                    stream.emit('error', new gutil.PluginError('gulp-webdriver', err));
                     callback();
                 });
             }
@@ -305,7 +304,7 @@ var GulpWebdriverIO = function(args) {
                 return tunnel.stop(logTunnelStopped);
             }
 
-            stream.emit('error', new gutil.PluginError('gulp-mocha', err));
+            stream.emit('error', new gutil.PluginError('gulp-webdriver', err));
             callback();
         });
     };
