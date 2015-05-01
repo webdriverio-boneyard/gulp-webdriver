@@ -214,6 +214,12 @@ var GulpWebdriverIO = function(args) {
     var endSeleniumSession = function(result, callback) {
         gutil.log('end selenium session');
 
+        if (!options.user && !options.key && !options.updateSauceJob) {
+            this.emit('error', new gutil.PluginError('gulp-webdriver', result + ' ' + (result === 1 ? 'test' : 'tests') + ' failed.', {
+                showStack: false
+            }));
+        }
+
         // Close Remote sessions if needed
         GLOBAL.browser.end(next(callback, result === 0));
     };
@@ -262,14 +268,14 @@ var GulpWebdriverIO = function(args) {
         var stream = this;
 
         async.waterfall([
-            pingSelenium,
-            installDrivers,
-            startServer,
-            initWebdriver,
-            runMocha,
-            endSeleniumSession,
-            killServer,
-            updateSauceJob
+            pingSelenium.bind(stream),
+            installDrivers.bind(stream),
+            startServer.bind(stream),
+            initWebdriver.bind(stream),
+            runMocha.bind(stream),
+            endSeleniumSession.bind(stream),
+            killServer.bind(stream),
+            updateSauceJob.bind(stream)
         ], function(err) {
 
             /**
