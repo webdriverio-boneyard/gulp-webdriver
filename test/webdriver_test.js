@@ -1,6 +1,6 @@
 var assert = require('assert');
 
-describe('grunt-webdriverjs test', function () {
+describe('gulp-webdriverjs test', function () {
 
     it('checks if title contains the search query', function(done) {
 

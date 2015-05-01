@@ -24,6 +24,9 @@
   "bugs": {
     "url": "https://github.com/webdriverio/gulp-webdriver/issues"
   },
+  "scripts": {
+    "test": "./node_modules/.bin/gulp test"
+  },
   "homepage": "https://github.com/webdriverio/gulp-webdriver",
   "dependencies": {
     "gulp-util": "^3.0.4",
