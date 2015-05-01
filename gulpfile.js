@@ -16,7 +16,7 @@ gulp.task('test:chrome_ci', function() {
             platform: 'Windows 8',
             version: '31',
             tags: ['chrome', 'Windows 8', '31'],
-            name: 'grunt-webdriver test',
+            name: 'gulp-webdriver test',
             build: process.env.TRAVIS_BUILD_NUMBER
         }
     }));
@@ -36,7 +36,7 @@ gulp.task('test:chrome_ciTunnel', function() {
             platform: 'Windows 8',
             version: '31',
             tags: ['chrome', 'Windows 8', '31'],
-            name: 'grunt-webdriver test',
+            name: 'gulp-webdriver test',
             'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER || Math.random().toString(),
             build: process.env.TRAVIS_BUILD_NUMBER
         }
