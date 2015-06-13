@@ -188,6 +188,13 @@ var GulpWebdriverIO = function(args) {
 
         GLOBAL.browser.init(function(err) {
             /**
+             *  Allow for adding custom commands
+             */
+            if("function" === typeof args.applyExtensions){
+                args.applyExtensions.call(null, this);
+            }
+            
+            /**
              * gracefully kill process if init fails
              */
             callback(err);
