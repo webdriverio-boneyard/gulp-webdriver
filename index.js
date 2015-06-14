@@ -21,9 +21,7 @@ var through = require('through2'),
 
 var GulpWebdriverIO = function(args) {
 
-    var that = this,
-        options = args || {},
-        base = process.cwd(),
+    var options = args || {},
         sessionID = null,
         seleniumOptions = options.seleniumOptions || {},
         seleniumInstallOptions = options.seleniumInstallOptions || {},
@@ -83,7 +81,6 @@ var GulpWebdriverIO = function(args) {
      * check if selenium server is already running
      */
     var pingSelenium = function(callback) {
-
         if (tunnel) {
             return callback(null);
         }
@@ -96,15 +93,20 @@ var GulpWebdriverIO = function(args) {
             path: '/wd/hub/status'
         };
 
-        http.get(opts, function() {
+        return http.get(opts, function(res) {
             gutil.log('selenium is running');
             isSeleniumServerRunning = true;
-            callback(null);
+            // Gulp seems to hang when HTTP requests are made, and that's how selenium is queried.
+            // https://github.com/gulpjs/gulp/issues/167
+            res.on('end', function () {
+                return callback(null);
+            });
+            res.resume();
         }).on('error', function() {
             gutil.log('selenium is not running');
-            callback(null);
+            isSeleniumServerRunning = false;
+            return callback(null);
         });
-
     };
 
     /**
@@ -122,7 +124,7 @@ var GulpWebdriverIO = function(args) {
             }
 
             gutil.log('driver installed');
-            callback(null);
+            return callback(null);
         });
     };
 
@@ -134,7 +136,8 @@ var GulpWebdriverIO = function(args) {
         if (tunnel) {
 
             if (isSauceTunnelRunning) {
-                return callback(null, true);
+                gutil.log('sauce tunnel is already running');
+                return callback(null, isSauceTunnelRunning);
             }
 
             gutil.log('start sauce tunnel');
@@ -150,7 +153,7 @@ var GulpWebdriverIO = function(args) {
 
                 gutil.log('tunnel created successfully');
                 isSauceTunnelRunning = true;
-                callback(null);
+                return callback(null, isSauceTunnelRunning);
             });
 
         } else if (!server && !isSeleniumServerRunning && !options.nospawn) {
@@ -169,19 +172,16 @@ var GulpWebdriverIO = function(args) {
                 gutil.log('selenium successfully started');
                 seleniumServer = child;
                 isSeleniumServerRunning = true;
-                callback(null, true);
+                return callback(null, true);
             });
 
         } else {
             gutil.log('standalone server or sauce tunnel is running');
-            callback(null, true);
+            return callback(null, true);
         }
 
     };
 
-    /**
-     * init WebdriverIO instance
-     */
     var initWebdriver = function() {
         var callback = arguments[arguments.length - 1];
         gutil.log('init WebdriverIO instance');
@@ -194,9 +194,6 @@ var GulpWebdriverIO = function(args) {
         });
     };
 
-    /**
-     * run mocha tests
-     */
     var runMocha = function(callback) {
         gutil.log('run mocha tests');
 
@@ -205,41 +202,60 @@ var GulpWebdriverIO = function(args) {
          */
         sessionID = GLOBAL.browser.requestHandler.sessionID;
 
-        mocha.run(next(callback));
+        return mocha.run(next(callback));
     };
 
-    /**
-     * end selenium session
-     */
-    var endSeleniumSession = function(result, callback) {
-        gutil.log('end selenium session');
-
-        if (!options.user && !options.key && !options.updateSauceJob) {
+    var checkMochaResults = function(result, callback){
+        if(result !== 0) {
             this.emit('error', new gutil.PluginError('gulp-webdriver', result + ' ' + (result === 1 ? 'test' : 'tests') + ' failed.', {
                 showStack: false
             }));
         }
 
-        // Close Remote sessions if needed
-        GLOBAL.browser.end(next(callback, result === 0));
+        return callback(null, result);
+    };
+
+    var endSeleniumSession = function(callback) {
+        if(GLOBAL.browser) {
+            // Close Remote sessions if needed
+            return GLOBAL.browser.end(function(){
+                gutil.log('ended selenium session');
+                callback();
+            });
+        } else {
+            return callback();
+        }
     };
 
     /**
-     * destroy sauce tunnel if connected (once all tasks were executed) or
-     * kill selenium server process if created
+     * destroy sauce tunnel if connected (once all tasks were executed)
      */
-    var killServer = function(result) {
-        var callback = arguments[arguments.length - 1];
-
+    var killSauceTunnel = function(done) {
         if (isSauceTunnelRunning) {
             gutil.log('destroy sauce tunnel if connected (once all tasks were executed)');
-            return tunnel.stop(next(callback, result));
-        } else if (seleniumServer) {
-            gutil.log('kill selenium server');
-            seleniumServer.kill();
+            return tunnel.stop(function(){
+                gutil.log('tunnel closed successfully');
+                done();
+            });
         }
 
-        callback(null, result);
+        return done();
+    };
+
+    /**
+     * kill selenium server process if created
+     * @param callback
+     * @returns {*}
+     */
+    var killSeleniumServer = function(callback) {
+        if (seleniumServer) {
+            gutil.log('killing selenium server');
+            return seleniumServer.kill().then(function(){
+                callback();
+            });
+        }
+
+        return callback();
     };
 
     /**
@@ -247,10 +263,6 @@ var GulpWebdriverIO = function(args) {
      */
     var updateSauceJob = function(result) {
         var callback = arguments[arguments.length - 1];
-
-        if (!options.user && !options.key && !options.updateSauceJob) {
-            return callback(null, result);
-        }
 
         gutil.log('update job on Sauce Labs');
         var sauceAccount = new SauceLabs({
@@ -266,53 +278,33 @@ var GulpWebdriverIO = function(args) {
 
     var runWebdriverIOTests = function(callback) {
         var stream = this;
-
-        async.waterfall([
+        var tasks = [
             pingSelenium.bind(stream),
             installDrivers.bind(stream),
             startServer.bind(stream),
             initWebdriver.bind(stream),
             runMocha.bind(stream),
-            endSeleniumSession.bind(stream),
-            killServer.bind(stream),
-            updateSauceJob.bind(stream)
-        ], function(err) {
+            checkMochaResults.bind(stream)
+        ];
 
-            /**
-             * if no error happened, we are good
-             */
-            if(!err) {
-                return callback();
-            }
+        if(options.updateSauceJob) {
+            tasks.push(updateSauceJob.bind(stream));
+        }
 
-            gutil.log('An error happened, shutting down services');
-
-            var logTunnelStopped = function() {
-                gutil.log('tunnel closed successfully');
+        async.waterfall(tasks, function(err) {
+            //if no error happened and no test failures, we are good
+            if(err) {
                 stream.emit('error', new gutil.PluginError('gulp-webdriver', err));
-                callback();
             }
 
-            if(sessionID) {
-                return GLOBAL.browser.end(function() {
-                    gutil.log('Selenium session closed successfully');
-
-                    if(isSauceTunnelRunning) {
-                        return tunnel.stop(logTunnelStopped);
-                    }
-
-                    stream.emit('error', new gutil.PluginError('gulp-webdriver', err));
-                    callback();
-                });
-            }
-
-            if(isSauceTunnelRunning) {
-                return tunnel.stop(logTunnelStopped);
-            }
-
-            stream.emit('error', new gutil.PluginError('gulp-webdriver', err));
-            callback();
+            async.waterfall([
+                endSeleniumSession.bind(stream),
+                killSauceTunnel.bind(stream),
+                killSeleniumServer.bind(stream)
+            ], callback);
         });
+
+        return stream;
     };
 
     return through.obj(function(file, enc, callback) {
