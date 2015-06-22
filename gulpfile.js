@@ -53,5 +53,3 @@ gulp.task('test:local', function() {
         }
     }));
 });
-
-gulp.task('default', ['test:chrome_ciTunnel', 'test:chrome_ci', 'test:local']);

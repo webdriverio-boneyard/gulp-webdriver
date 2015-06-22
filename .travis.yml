@@ -16,3 +16,8 @@ env:
   global:
     - secure: S9VBWlFB34JKiGxGv+EHIB3/7r8uWS7n/TEAKeq1s69eTHn4z4/NXvOvH2/FdNEByEG0u5p7mja+B09VwNjJyS0ahN2atYDkIrHxfKu//DidukQth17halTRQgiCAVna5zizlFvuZtQDCLV2/81+Y3S10VfD70fgQdAfKPHZ3QA=
     - secure: ZBIA6Sjjug9//CLDadfZeTbvC7MW40ku0cx9B5JeBni72wN4aeGwaR7xBsCJ6KOFmXRk5a588MoNhbxJ3WrVUJkEds9POtEfJLxXpUXPaRoRldIRLRb+T1U/Wnfg4wQ75YbODhY3k79FSJoYbADdEACtqgUu/BEC9Yoa7C+FmmY=
+
+  matrix:
+    - GULP_ENV: "chrome_ci"
+    - GULP_ENV: "chrome_ciTunnel"
+    - GULP_ENV: "local"

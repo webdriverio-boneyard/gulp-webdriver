@@ -25,7 +25,7 @@
     "url": "https://github.com/webdriverio/gulp-webdriver/issues"
   },
   "scripts": {
-    "test": "./node_modules/.bin/gulp"
+    "test": "./node_modules/.bin/gulp test:$GULP_ENV"
   },
   "homepage": "https://github.com/webdriverio/gulp-webdriver",
   "dependencies": {
