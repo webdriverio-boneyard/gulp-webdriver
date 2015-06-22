@@ -222,9 +222,11 @@ var GulpWebdriverIO = function(args) {
         gutil.log('end selenium session');
 
         if (!options.user && !options.key && !options.updateSauceJob) {
-            this.emit('error', new gutil.PluginError('gulp-webdriver', result + ' ' + (result === 1 ? 'test' : 'tests') + ' failed.', {
-                showStack: false
-            }));
+            if(result !== 0) { 
+                this.emit('error', new gutil.PluginError('gulp-webdriver', result + ' ' + (result === 1 ? 'test' : 'tests') + ' failed.', {
+                    showStack: false
+                }));
+            }
         }
 
         // Close Remote sessions if needed
