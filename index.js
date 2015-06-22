@@ -255,9 +255,7 @@ var GulpWebdriverIO = function(args) {
     var killSeleniumServer = function(callback) {
         if (seleniumServer) {
             gutil.log('killing selenium server');
-            return seleniumServer.kill().then(function(){
-                callback();
-            });
+            seleniumServer.kill();
         }
 
         return callback();
