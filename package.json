@@ -2,7 +2,7 @@
   "name": "gulp-webdriver",
   "version": "0.1.0",
   "description": "gulp-webdriver is a Gulp plugin to run Selenium tests with Mocha and WebdriverIO",
-  "main": "Gruntfile.js",
+  "main": "index.js",
   "scripts": {
     "test": "gulp test --debug"
   },
