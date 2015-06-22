@@ -138,3 +138,4 @@ maintain the existing coding style.
 
 ## Release History
 * 2015-06-22   v0.1.0   first release
+* 2015-06-22   v0.1.1   fixed package.json
