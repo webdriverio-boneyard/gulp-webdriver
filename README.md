@@ -101,12 +101,6 @@ Default: *false*
 
 If true it will automatically update the current job and does publish it.
 
-#### output
-Type: `String`
-Default: *null*
-
-If set grunt-webdriver will pipe reporter output into given file path
-
 #### quiet
 Type: `Boolean`
 Default: *false*
