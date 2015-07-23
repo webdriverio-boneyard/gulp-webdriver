@@ -2,6 +2,7 @@
 
 var through = require('through2'),
     gutil = require('gulp-util'),
+    resolveFrom = require('resolve-from'),
     Mocha = require('mocha'),
     SauceLabs = require('saucelabs'),
     SauceTunnel = require('sauce-tunnel'),
@@ -44,6 +45,15 @@ var GulpWebdriverIO = function(args) {
     gutil.log('run webdriverio with following capabilities: ' + JSON.stringify(options));
     options.logLevel = options.quiet ? 'silent' : options.logLevel;
     GLOBAL.browser = webdriverio.remote(options);
+
+    /**
+     * require files
+     */
+    if (Array.isArray(options.require) && options.require.length) {
+        options.require.forEach(function (x) {
+            require(resolveFrom(process.cwd(), x));
+        });
+    }
 
     /**
      * initialize Mocha
