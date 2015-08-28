@@ -95,6 +95,11 @@ Type: `String`
 
 When specified will trigger mocha to only run tests matching the given pattern which is internally compiled to a `RegExp`.
 
+#### require
+Type: `Array`
+
+Modules to be required before tests are run.
+
 #### updateSauceJob
 Type: `Boolean`<br>
 Default: *false*
