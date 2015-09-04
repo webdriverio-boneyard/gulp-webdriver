@@ -1,7 +1,7 @@
 {
   "name": "gulp-webdriver",
-  "version": "0.1.1",
-  "description": "gulp-webdriver is a Gulp plugin to run Selenium tests with Mocha and WebdriverIO",
+  "version": "1.0.0",
+  "description": "gulp-webdriver is a gulp plugin to run selenium tests with the WebdriverIO testrunner",
   "main": "index.js",
   "repository": {
     "type": "git",
