@@ -13,8 +13,8 @@ module.exports = function(options) {
 
         var stream = this,
             configFile = file.path,
-            base = process.cwd(),
-            wdioBin = path.join(base, 'node_modules', 'webdriverio', 'bin') + '/wdio';
+            isWin = /^win/.test(process.platform),
+            wdioBin = path.join(__dirname, 'node_modules', '.bin', isWin ? 'wdio.cmd' : 'wdio');
 
         var opts = deepmerge({
             wdioBin: wdioBin

@@ -34,11 +34,11 @@
     "gulp-util": "^3.0.4",
     "through2": "^0.6.5",
     "deepmerge": "^0.2.7",
-    "dargs": "christian-bromann/dargs"
+    "dargs": "christian-bromann/dargs",
+    "webdriverio": "^3.2.1"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
-    "mocha": "^2.3.0",
-    "webdriverio": "^3.2.1"
+    "mocha": "^2.3.0"
   }
 }
