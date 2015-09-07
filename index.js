@@ -13,7 +13,8 @@ module.exports = function(options) {
 
         var stream = this,
             configFile = file.path,
-            wdioBin = path.join(__dirname, 'node_modules', '.bin', 'wdio');
+            isWin = /^win/.test(process.platform),
+            wdioBin = path.join(__dirname, 'node_modules', '.bin', isWin ? 'wdio.cmd' : 'wdio');
 
         var opts = deepmerge({
             wdioBin: wdioBin
