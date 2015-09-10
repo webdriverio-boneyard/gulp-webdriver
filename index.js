@@ -18,7 +18,7 @@ module.exports = function(options) {
 
         var opts = deepmerge({
             wdioBin: wdioBin
-        }, options);
+        }, options || {});
 
         /**
          * check webdriverio dependency
