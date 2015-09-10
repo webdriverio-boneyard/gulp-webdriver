@@ -42,3 +42,4 @@ maintain the existing coding style.
 * 2015-06-22   v0.1.0   first release
 * 2015-06-22   v0.1.1   fixed package.json
 * 2015-09-03   v1.0.0   let gulp-webdriver be a simple tool to run tests with the wdio test runner
+* 2015-09-09   v1.0.1   better Windows support, allow gulp-webdriver without options
