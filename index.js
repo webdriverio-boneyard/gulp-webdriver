@@ -43,7 +43,7 @@ module.exports = function(options) {
             gutil.log('wdio testrunner finished with exit code', code);
 
             if (code !== 0) {
-                stream.emit('error', new gutil.PluginError('gulp-webdriver', 'wdio excited with code ' + code, {
+                stream.emit('error', new gutil.PluginError('gulp-webdriver', 'wdio exited with code ' + code, {
                     showStack: false
                 }));
             }
