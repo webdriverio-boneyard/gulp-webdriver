@@ -11,7 +11,7 @@ npm install gulp-webdriver --save-dev
 
 ## Usage
 
-You can run WebdriverIO locally running this simple task:
+You can run WebdriverIO locally by running this simple task:
 
 ```js
 gulp.task('test:e2e', function() {
@@ -19,8 +19,8 @@ gulp.task('test:e2e', function() {
 });
 ```
 
-gulp-webdriver makes the wdio testrunner easy accessible and allows you to run multiple config files
-sequentially. If desired you can pass additional arguments to the wdio command to specify your test.
+gulp-webdriver makes the wdio testrunner easily accessible and allows you to run multiple config files
+sequentially. If desired, you can pass additional arguments to the wdio command to specify your test.
 You can find all available options [here](http://webdriver.io/guide/testrunner/gettingstarted.html)
 or by executin `$ wdio --help` (if you have WebdriverIO installed globally).
 
@@ -33,6 +33,8 @@ gulp.task('test:e2e', function() {
     }));
 });
 ```
+
+The wdio testrunner currently supports Mocha, Jasmine (v2.0) and Cucumber, and you may reference webdriver instances inside your spec files or step definition by using a global variable called "browser". For more information, please see the official WebdriverIO test framework documentation [here](http://webdriver.io/guide/testrunner/frameworks.html).
 
 ## Contributing
 Please fork, add specs, and send pull requests! In lieu of a formal styleguide, take care to
