@@ -35,7 +35,7 @@
     "through2": "^0.6.5",
     "deepmerge": "^0.2.7",
     "dargs": "christian-bromann/dargs",
-    "webdriverio": "^3.2.1"
+    "webdriverio": "^3.3.0"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
