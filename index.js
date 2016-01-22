@@ -14,7 +14,17 @@ module.exports = function(options) {
         var stream = this,
             configFile = file.path,
             isWin = /^win/.test(process.platform),
-            wdioBin = require.resolve(path.join('webdriverio', 'bin', isWin ? 'wdio.cmd' : 'wdio'));
+            wdioBin;
+            
+        if (isWin) {
+            wdioBin = path.join('webdriverio', 'bin', 'wdio.cmd'); // Before npm 3
+            if (!fs.existsSync(wdioBin)) {                
+                wdioBin = path.join('.bin', 'wdio.cmd');
+            }
+            wdioBin = require.resolve(wdioBin);
+        } else {
+            wdioBin = require.resolve(path.join('webdriverio', 'bin', 'wdio'));
+        }
 
         var opts = deepmerge({
             wdioBin: wdioBin
