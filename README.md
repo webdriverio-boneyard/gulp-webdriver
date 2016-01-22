@@ -46,3 +46,4 @@ maintain the existing coding style.
 * 2015-09-03   v1.0.0   let gulp-webdriver be a simple tool to run tests with the wdio test runner
 * 2015-09-09   v1.0.1   better Windows support, allow gulp-webdriver without options
 * 2015-12-01   v1.0.2   bumped WebdriverIO version to 3.3.0
+* 2015-12-01   v1.0.3   fixed wdio path on windows

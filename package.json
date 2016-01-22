@@ -1,6 +1,6 @@
 {
   "name": "gulp-webdriver",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "gulp-webdriver is a gulp plugin to run selenium tests with the WebdriverIO testrunner",
   "main": "index.js",
   "repository": {
@@ -35,7 +35,7 @@
     "through2": "^0.6.5",
     "deepmerge": "^0.2.7",
     "dargs": "christian-bromann/dargs",
-    "webdriverio": "^3.3.0"
+    "webdriverio": "^3.4.0"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
