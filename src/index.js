@@ -1,8 +1,11 @@
 import through from 'through2'
-import Launcher from '../node_modules/webdriverio/build/lib/launcher'
+import resolve from 'resolve'
+import path from 'path'
 
 export default (options) => {
     return through.obj((file, encoding, callback) => {
+        let Launcher = require(path.join(path.dirname(resolve.sync('webdriverio')), 'lib/launcher'))
+
         let launcher = new Launcher(file.path, options)
 
         launcher.run()

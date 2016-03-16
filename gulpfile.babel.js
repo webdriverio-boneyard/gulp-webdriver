@@ -7,7 +7,7 @@ import test from './gulp/test'
 
 const options = {
     src: 'src',
-    dist: 'build',
+    dist: 'l',
     test: 'test',
     errorHandler: (title) => {
         return (err) => {

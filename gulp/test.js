@@ -1,6 +1,6 @@
 import gulp from 'gulp'
 import selenium from 'selenium-standalone'
-import webdriver from '../src/index'
+import webdriver from '../lib/index'
 
 export default options => {
     let errorLog = options.errorHandler('Selenium start')
