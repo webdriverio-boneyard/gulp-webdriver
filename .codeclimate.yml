@@ -10,6 +10,6 @@ engines:
     enabled: false
 ratings:
   paths:
-  - "lib/*.js"
+  - "src/*.js"
 exclude_paths:
 - node_modules/**/*

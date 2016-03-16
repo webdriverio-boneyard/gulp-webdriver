@@ -1,8 +1,11 @@
-import gulp from "gulp";
-import babel from "gulp-babel";
+import gulp from 'gulp'
+import babel from 'gulp-babel'
+import del from 'del'
 
 export default options => {
-    gulp.task("build", () => gulp.src(`${options.src}/**/*.js`)
+    gulp.task('clean', () => del([options.dist + '/']))
+
+    gulp.task('build', () => gulp.src(`${options.src}/**/*.js`)
         .pipe(babel())
-        .pipe(gulp.dest(options.dist)));
-};
+        .pipe(gulp.dest(options.dist)))
+}

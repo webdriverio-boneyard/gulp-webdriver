@@ -1,25 +1,25 @@
-import gulp from 'gulp';
-import gutil from 'gulp-util';
+import gulp from 'gulp'
+import gutil from 'gulp-util'
 
-import build from './gulp/build';
-import test from './gulp/test';
+import eslint from './gulp/eslint'
+import build from './gulp/build'
+import test from './gulp/test'
 
 const options = {
     src: 'src',
     dist: 'build',
     test: 'test',
-    tmp: '.tmp',
-    errorHandler(title) {
-        return function(err) {
-            gutil.log(gutil.colors.red(`[${title}]`), err.toString());
-            this.emit('end');
-        };
+    errorHandler: (title) => {
+        return (err) => {
+            gutil.log(gutil.colors.red(`[${title}]`), err.toString())
+        }
     }
-};
+}
 
-new build(options);
-new test(options);
+eslint(options)
+build(options)
+test(options)
 
 gulp.task('default', ['clean'], () => {
-    gulp.start('build');
-});
+    gulp.start('build')
+})

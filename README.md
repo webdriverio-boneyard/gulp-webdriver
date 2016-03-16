@@ -41,9 +41,10 @@ Please fork, add specs, and send pull requests! In lieu of a formal styleguide, 
 maintain the existing coding style.
 
 ## Release History
-* 2015-06-22   v0.1.0   first release
-* 2015-06-22   v0.1.1   fixed package.json
-* 2015-09-03   v1.0.0   let gulp-webdriver be a simple tool to run tests with the wdio test runner
-* 2015-09-09   v1.0.1   better Windows support, allow gulp-webdriver without options
-* 2015-12-01   v1.0.2   bumped WebdriverIO version to 3.3.0
-* 2015-12-01   v1.0.3   fixed wdio path on windows
+* 2015-06-22   v0.1.0       first release
+* 2015-06-22   v0.1.1       fixed package.json
+* 2015-09-03   v1.0.0       let gulp-webdriver be a simple tool to run tests with the wdio test runner
+* 2015-09-09   v1.0.1       better Windows support, allow gulp-webdriver without options
+* 2015-12-01   v1.0.2       bumped WebdriverIO version to 3.3.0
+* 2015-12-01   v1.0.3       fixed wdio path on windows
+* 2016-03-16   v1.1.0-beta  updated to ES6 and to use WebdriverIO 4.0
