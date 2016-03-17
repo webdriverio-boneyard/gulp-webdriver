@@ -11,7 +11,7 @@ const options = {
     test: 'test',
     errorHandler: (title) => {
         return (err) => {
-            gutil.log(gutil.colors.red(`[${title}]`), err.toString())
+            gutil.log(gutil.colors.red(`[${title}]`), err ? err.toString() : err)
         }
     }
 }
