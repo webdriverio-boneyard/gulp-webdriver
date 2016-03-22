@@ -39,7 +39,7 @@ module.exports = function(options) {
             }));
         }
 
-        var args = process.execArgv.concat([configFile]).concat(dargs(opts, {
+        var args = ([configFile]).concat(process.execArgv).concat(dargs(opts, {
             excludes: ['wdioBin'],
             keepCamelCase: true
         }));
