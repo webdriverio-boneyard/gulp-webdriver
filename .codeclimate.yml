@@ -1,0 +1,15 @@
+---
+engines:
+  rubocop:
+    enabled: false
+  coffeelint:
+    enabled: false
+  eslint:
+    enabled: true
+  csslint:
+    enabled: false
+ratings:
+  paths:
+  - "src/*.js"
+exclude_paths:
+- node_modules/**/*
