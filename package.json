@@ -11,8 +11,7 @@
     "compile": "babel --presets es2015 -d lib/ src/",
     "eslint": "eslint gulp/ src/ test/ *.js",
     "test": "gulp test",
-    "pretest": "npm run eslint && npm run compile",
-    "prepublish": "npm prune && npm run test"
+    "pretest": "npm run eslint && npm run compile"
   },
   "keywords": [
     "webdriverio",
