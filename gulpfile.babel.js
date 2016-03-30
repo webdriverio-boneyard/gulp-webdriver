@@ -2,12 +2,11 @@ import gulp from 'gulp'
 import gutil from 'gulp-util'
 
 import eslint from './gulp/eslint'
-import build from './gulp/build'
 import test from './gulp/test'
 
 const options = {
     src: 'src',
-    dist: 'l',
+    dist: 'lib',
     test: 'test',
     errorHandler: (title) => {
         return (err) => {
@@ -17,7 +16,6 @@ const options = {
 }
 
 eslint(options)
-build(options)
 test(options)
 
 gulp.task('default', ['clean'], () => {

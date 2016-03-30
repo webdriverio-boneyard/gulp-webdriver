@@ -47,4 +47,4 @@ maintain the existing coding style.
 * 2015-09-09   v1.0.1       better Windows support, allow gulp-webdriver without options
 * 2015-12-01   v1.0.2       bumped WebdriverIO version to 3.3.0
 * 2015-12-01   v1.0.3       fixed wdio path on windows
-* 2016-03-16   v1.1.0-beta  updated to ES6 and to use WebdriverIO 4.0
+* 2016-03-16   v2.0.0       updated codebase to ES6 and WebdriverIO to v4.0
