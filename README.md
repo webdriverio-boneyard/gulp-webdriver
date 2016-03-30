@@ -48,3 +48,4 @@ maintain the existing coding style.
 * 2015-12-01   v1.0.2       bumped WebdriverIO version to 3.3.0
 * 2015-12-01   v1.0.3       fixed wdio path on windows
 * 2016-03-16   v2.0.0       updated codebase to ES6 and WebdriverIO to v4.0
+* 2016-03-30   v2.0.1       improved error handling
