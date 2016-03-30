@@ -7,4 +7,10 @@ branches:
   only:
     - master
 
+before_script:
+    - apt-get install xvfb
+    - apt-get install firefox-mozilla-build
+    - Xvfb &
+    - export DISPLAY=localhost:0.0
+
 script: "npm test"
