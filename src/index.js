@@ -1,20 +1,29 @@
 import through from 'through2'
 import resolve from 'resolve'
 import path from 'path'
+import gutil from 'gulp-util'
 
 module.exports = (options) => {
-    return through.obj((file, encoding, callback) => {
+    return through.obj(function (file, encoding, callback) {
+        let stream = this
         let Launcher = require(path.join(path.dirname(resolve.sync('webdriverio')), 'lib/launcher'))
+        let wdio = new Launcher(file.path, options)
 
-        let launcher = new Launcher(file.path, options)
+        wdio.run().then(code => {
+            process.stdin.pause()
 
-        launcher.run().then(code => {
-            process.exit(code)
-            callback(null)
+            if (code !== 0) {
+                process.nextTick(() => stream.emit('error', new gutil.PluginError('gulp-webdriver', `wdio exited with code ${code}`, {
+                    showStack: false
+                })))
+            }
+
+            callback()
         }, e => {
-            process.nextTick(() => {
-                throw e
-            })
+            process.stdin.pause()
+            process.nextTick(() => stream.emit('error', new gutil.PluginError('gulp-webdriver', e, { showStack: true })))
         })
+
+        return stream
     })
 }

@@ -28,7 +28,7 @@ export default options => {
         })
     })
 
-    gulp.task('test-run', ['selenium:start'], () => {
+    gulp.task('test', ['selenium:start'], () => {
         return gulp.src(`${options.test}/wdio.*`)
             .pipe(webdriver({
                 logLevel: 'verbose',
@@ -38,11 +38,8 @@ export default options => {
                 cucumberOpts: {
                     require: 'nothing'
                 }
-            }))
-    })
-
-    gulp.task('test', ['test-run'], (done) => {
-        selenium.child.kill()
-        done()
+            })).once('end', () => {
+                selenium.child.kill()
+            })
     })
 }
