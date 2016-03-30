@@ -40,7 +40,7 @@
     "through2": "^0.6.5"
   },
   "peerDependencies": {
-    "webdriverio": "^4.0.3"
+    "webdriverio": "^4.0.5"
   },
   "devDependencies": {
     "babel-cli": "^6.6.5",
@@ -60,7 +60,6 @@
     "mocha": "^2.3.0",
     "run-sequence": "^1.1.5",
     "selenium-standalone": "^5.0.0",
-    "wdio-dot-reporter": "^0.0.5",
-    "wdio-mocha-framework": "^0.2.11"
+    "wdio-mocha-framework": "^0.2.12"
   }
 }

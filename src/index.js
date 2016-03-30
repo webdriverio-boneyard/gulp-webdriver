@@ -8,14 +8,13 @@ module.exports = (options) => {
 
         let launcher = new Launcher(file.path, options)
 
-        launcher.run()
-            .then(code => {
-                process.exit(code)
-                callback(null)
-            }, e => {
-                process.nextTick(() => {
-                    throw e
-                })
+        launcher.run().then(code => {
+            process.exit(code)
+            callback(null)
+        }, e => {
+            process.nextTick(() => {
+                throw e
             })
+        })
     })
 }

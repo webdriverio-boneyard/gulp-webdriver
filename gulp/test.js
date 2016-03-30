@@ -31,8 +31,7 @@ export default options => {
     gulp.task('test-run', ['selenium:start'], () => {
         return gulp.src(`${options.test}/wdio.*`)
             .pipe(webdriver({
-                logLevel: 'command',
-                updateJob: true,
+                logLevel: 'verbose',
                 waitforTimeout: 12345,
                 framework: 'mocha',
                 // only for testing purposes
@@ -47,4 +46,3 @@ export default options => {
         done()
     })
 }
-
