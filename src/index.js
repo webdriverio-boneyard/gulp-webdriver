@@ -19,6 +19,7 @@ module.exports = (options) => {
             }
 
             callback()
+            process.nextTick(() => stream.emit('end'))
         }, e => {
             process.stdin.pause()
             process.nextTick(() => stream.emit('error', new gutil.PluginError('gulp-webdriver', e, { showStack: true })))
