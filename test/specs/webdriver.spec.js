@@ -1,6 +1,6 @@
 import assert from 'assert'
 
-describe('grunt-webdriverjs test', () => {
+describe('gulp-webdriverjs test', () => {
     it('should have right options', () => {
         assert.strictEqual(browser.options.waitforTimeout, 12345)
         assert.strictEqual(browser.options.coloredLogs, true)
