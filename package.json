@@ -8,6 +8,7 @@
   },
   "main": "lib/index.js",
   "scripts": {
+    "prepublish": "npm run compile",
     "compile": "babel --presets es2015 -d lib/ src/",
     "eslint": "eslint gulp/ src/ test/ *.js",
     "test": "gulp test",
