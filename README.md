@@ -33,6 +33,27 @@ gulp.task('test:e2e', function() {
     }));
 });
 ```
+To run specific suites, they need to be defined inside your wdio.config.js file. For example, if you had a set of tests to check page titles, you may have a section of your config that looked like so:
+
+```js
+...
+  suites: {
+    titles: [
+      './test/specs/dev/devSample.js',
+      './test/specs/dev/featureTest.js'
+    ]
+  }
+...
+```
+
+To include the 'titles' suite in your task, simply add it as follows:
+
+```js
+gulp.task('test:e2e', function() {
+    return gulp.src('wdio.conf.js').pipe(webdriver({
+        suite: 'titles'
+    }));
+});
 
 The wdio testrunner currently supports Mocha, Jasmine (v2.0) and Cucumber, and you may reference webdriver instances inside your spec files or step definition by using a global variable called "browser". For more information, please see the official WebdriverIO test framework documentation [here](http://webdriver.io/guide/testrunner/frameworks.html).
 
