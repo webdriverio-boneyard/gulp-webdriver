@@ -11,6 +11,6 @@ describe('gulp-webdriverjs test', () => {
     it('checks if title contains the search query', () => {
         browser.url('/')
         var title = browser.getTitle()
-        assert.strictEqual(title, 'WebdriverIO - Selenium 2.0 javascript bindings for nodejs')
+        assert.strictEqual(title, 'WebdriverIO - WebDriver bindings for Node.js')
     })
 })
