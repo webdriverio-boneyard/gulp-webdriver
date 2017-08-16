@@ -57,7 +57,6 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-eslint": "7.0.0",
-    "gulp-util": "^3.0.7",
     "mocha": "^3.0.8",
     "run-sequence": "^2.1.0",
     "selenium-standalone": "^6.7.0",
