@@ -56,7 +56,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
-    "gulp-eslint": "7.0.0",
+    "gulp-eslint": "4.0.0",
     "mocha": "^3.0.8",
     "run-sequence": "^2.1.0",
     "selenium-standalone": "^6.7.0",
