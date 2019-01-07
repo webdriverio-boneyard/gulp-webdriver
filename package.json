@@ -41,7 +41,7 @@
     "through2": "^2.0.3"
   },
   "peerDependencies": {
-    "webdriverio": "^4.1.1"
+    "webdriverio": "^5.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
