@@ -1,8 +1,5 @@
-import gulp from 'gulp'
 import gutil from 'gulp-util'
-
-import eslint from './gulp/eslint'
-import test from './gulp/test'
+const { series } = require('gulp')
 
 const options = {
     src: 'src',
@@ -15,9 +12,9 @@ const options = {
     }
 }
 
-eslint(options)
-test(options)
+const { eslint } = require('./gulp/eslint')(options)
+const { test } = require('./gulp/test')(options)
 
-gulp.task('default', ['clean'], () => {
-    gulp.start('build')
-})
+exports.eslint = eslint
+exports.test = test
+exports.default = series(eslint,test)
