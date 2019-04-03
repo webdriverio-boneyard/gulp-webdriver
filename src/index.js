@@ -6,7 +6,7 @@ import gutil from 'gulp-util'
 module.exports = (options) => {
     return through.obj(function (file, encoding, callback) {
         let stream = this
-        let Launcher = require(path.join(path.dirname(resolve.sync('webdriverio')), 'lib/launcher'))
+        let Launcher = require(path.join(path.dirname(resolve.sync('@wdio/cli')), 'launcher')).default
         let wdio = new Launcher(file.path, options)
 
         wdio.run().then(code => {
