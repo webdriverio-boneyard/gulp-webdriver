@@ -9,6 +9,17 @@ gulp-webdriver [![Build Status](https://travis-ci.org/webdriverio/gulp-webdriver
 npm install gulp-webdriver --save-dev
 ```
 
+## WDIO Version Compatibility
+
+There are breaking changes between WDIO v4 and v5. 
+
+The chart below shows the versions of this plugin and their WDIO compatibility version.
+
+| gulp-webdriver | WDIO |
+| -------------- | ---- |
+|     ^2.0.2     |  v4  |
+|     ^3.0.0     |  v5  |
+
 ## Usage
 
 You can run WebdriverIO locally by running this simple task:
@@ -54,3 +65,4 @@ maintain the existing coding style.
 * 2016-03-16   v2.0.0       updated codebase to ES6 and WebdriverIO to v4.0
 * 2016-03-30   v2.0.1       improved error handling
 * 2016-07-06   v2.0.2       fixed bug where gulp end event was not fired
+* 2019-07-13   v3.0.0       bumped WebdriverIO version to 5.11.2

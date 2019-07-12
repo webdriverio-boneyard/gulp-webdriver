@@ -1,12 +1,10 @@
 import through from 'through2'
-import resolve from 'resolve'
-import path from 'path'
 import gutil from 'gulp-util'
+import Launcher from '@wdio/cli/build/launcher'
 
 module.exports = (options) => {
     return through.obj(function (file, encoding, callback) {
         let stream = this
-        let Launcher = require(path.join(path.dirname(resolve.sync('webdriverio')), 'lib/launcher'))
         let wdio = new Launcher(file.path, options)
 
         wdio.run().then(code => {
