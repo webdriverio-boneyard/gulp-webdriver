@@ -17,4 +17,4 @@ const { test } = require('./gulp/test')(options)
 
 exports.eslint = eslint
 exports.test = test
-exports.default = series(eslint,test)
+exports.default = series(eslint, test)
