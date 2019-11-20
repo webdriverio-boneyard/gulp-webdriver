@@ -6,7 +6,7 @@ module.exports = options => {
     let module = {}
     let errorLog = options.errorHandler('Selenium start')
 
-    function seleniumStart(done) {
+    function seleniumStart (done) {
         selenium.install({
             logger (message) {
                 process.stdout.write(`${message} \n`)
@@ -29,23 +29,23 @@ module.exports = options => {
         })
     }
 
-    function seleniumWebdriver(done) {
+    function seleniumWebdriver (done) {
         return gulp.src(`${options.test}/wdio.*`)
-          .pipe(webdriver({
-              logLevel: 'verbose',
-              waitforTimeout: 12345,
-              framework: 'mocha',
-              // only for testing purposes
-              cucumberOpts: {
-                  require: 'nothing'
-              }
-          })).once('end', () => {
-              selenium.child.kill()
-          })
+            .pipe(webdriver({
+                logLevel: 'verbose',
+                waitforTimeout: 12345,
+                framework: 'mocha',
+                // only for testing purposes
+                cucumberOpts: {
+                    require: 'nothing'
+                }
+            })).once('end', () => {
+                selenium.child.kill()
+            })
     }
 
     const { series } = require('gulp')
-    module.test = series(seleniumStart,seleniumWebdriver)
+    module.test = series(seleniumStart, seleniumWebdriver)
     module.default = module.test
     return module
 }
