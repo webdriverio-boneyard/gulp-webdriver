@@ -1,4 +1,5 @@
-import gutil from 'gulp-util'
+const log = require('fancy-log')
+const colors = require('ansi-colors')
 const { series } = require('gulp')
 
 const options = {
@@ -7,7 +8,7 @@ const options = {
     test: 'test',
     errorHandler: (title) => {
         return (err) => {
-            gutil.log(gutil.colors.red(`[${title}]`), err ? err.toString() : err)
+            log.error(colors.red(`[${title}]`), err ? err.toString() : '')
         }
     }
 }
