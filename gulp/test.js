@@ -32,7 +32,7 @@ module.exports = options => {
     function seleniumWebdriver (done) {
         return gulp.src(`${options.test}/wdio.*`)
             .pipe(webdriver({
-                logLevel: 'verbose',
+                logLevel: 'info',
                 waitforTimeout: 12345,
                 framework: 'mocha',
                 // only for testing purposes
