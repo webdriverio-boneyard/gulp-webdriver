@@ -1,4 +1,6 @@
-import gutil from 'gulp-util'
+import logger from '@wdio/logger'
+const log = logger('gulp-webdriver')
+const colors = require('ansi-colors')
 const { series } = require('gulp')
 
 const options = {
@@ -7,7 +9,11 @@ const options = {
     test: 'test',
     errorHandler: (title) => {
         return (err) => {
-            gutil.log(gutil.colors.red(`[${title}]`), err ? err.toString() : err)
+            if (err) {
+                log.error(`${colors.red([title]) + err.toString()}`)
+            } else {
+                log.info(`${colors.redBright([title])}`)
+            }
         }
     }
 }
@@ -17,4 +23,4 @@ const { test } = require('./gulp/test')(options)
 
 exports.eslint = eslint
 exports.test = test
-exports.default = series(eslint,test)
+exports.default = series(eslint, test)

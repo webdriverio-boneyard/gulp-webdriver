@@ -1,7 +1,7 @@
 import through from 'through2'
 import resolve from 'resolve'
 import path from 'path'
-import gutil from 'gulp-util'
+import PluginError from 'plugin-error'
 
 module.exports = (options) => {
     return through.obj(function (file, encoding, callback) {
@@ -13,7 +13,7 @@ module.exports = (options) => {
             process.stdin.pause()
 
             if (code !== 0) {
-                process.nextTick(() => stream.emit('error', new gutil.PluginError('gulp-webdriver', `wdio exited with code ${code}`, {
+                process.nextTick(() => stream.emit('error', new PluginError('gulp-webdriver', `wdio exited with code ${code}`, {
                     showStack: false
                 })))
             }
@@ -22,7 +22,7 @@ module.exports = (options) => {
             process.nextTick(() => stream.emit('end'))
         }, e => {
             process.stdin.pause()
-            process.nextTick(() => stream.emit('error', new gutil.PluginError('gulp-webdriver', e, { showStack: true })))
+            process.nextTick(() => stream.emit('error', new PluginError('gulp-webdriver', e, { showStack: true })))
         })
 
         return stream

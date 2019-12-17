@@ -31,7 +31,7 @@ import webdriver from 'gulp-webdriver';
 
 gulp.task('test:e2e', function() {
     return gulp.src('wdio.conf.js').pipe(webdriver({
-        logLevel: 'verbose',
+        logLevel: 'info',
         waitforTimeout: 10000,
         reporter: 'spec'
     }));
