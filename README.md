@@ -1,7 +1,7 @@
 gulp-webdriver [![Build Status](https://travis-ci.org/webdriverio/gulp-webdriver.svg?branch=master)](https://travis-ci.org/webdriverio/gulp-webdriver) [![Join the chat at https://gitter.im/webdriverio/gulp-webdriver](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/webdriverio/gulp-webdriver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ==============
 
-> gulp-webdriver is a gulp plugin to run selenium tests with the [WebdriverIO](http://webdriver.io) testrunner
+> gulp-webdriver is a gulp plugin to run e2e tests with the [WebdriverIO](http://webdriver.io) testrunner
 
 ## Install
 
@@ -54,3 +54,4 @@ maintain the existing coding style.
 * 2016-03-16   v2.0.0       updated codebase to ES6 and WebdriverIO to v4.0
 * 2016-03-30   v2.0.1       improved error handling
 * 2016-07-06   v2.0.2       fixed bug where gulp end event was not fired
+* 2019-12-17   v3.0.0       Support for WebdriverIO v5
