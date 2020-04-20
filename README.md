@@ -55,3 +55,4 @@ maintain the existing coding style.
 * 2016-03-30   v2.0.1       improved error handling
 * 2016-07-06   v2.0.2       fixed bug where gulp end event was not fired
 * 2019-12-17   v3.0.0       Support for WebdriverIO v5
+* 2020-04-20   v4.0.0       Support for WebdriverIO v6

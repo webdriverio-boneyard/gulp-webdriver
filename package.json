@@ -1,6 +1,6 @@
 {
   "name": "gulp-webdriver",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "gulp-webdriver is a gulp plugin to run e2e tests with the WebdriverIO testrunner",
   "repository": {
     "type": "git",
