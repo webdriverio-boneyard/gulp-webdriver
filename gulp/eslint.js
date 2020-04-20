@@ -10,8 +10,5 @@ function eslinter (cb) {
 }
 
 module.exports = options => {
-    let module = {}
-    module.default = eslinter
-    module.eslint = eslinter
-    return module
+    return { default: eslinter, eslint: eslinter }
 }

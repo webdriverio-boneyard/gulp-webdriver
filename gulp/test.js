@@ -3,8 +3,7 @@ import selenium from 'selenium-standalone'
 import webdriver from '../lib/index'
 
 module.exports = options => {
-    let module = {}
-    let errorLog = options.errorHandler('Selenium start')
+    const errorLog = options.errorHandler('Selenium start')
 
     function seleniumStart (done) {
         selenium.install({
@@ -45,7 +44,8 @@ module.exports = options => {
     }
 
     const { series } = require('gulp')
-    module.test = series(seleniumStart, seleniumWebdriver)
-    module.default = module.test
-    return module
+    return {
+        test: series(seleniumStart, seleniumWebdriver),
+        default: module.test
+    }
 }

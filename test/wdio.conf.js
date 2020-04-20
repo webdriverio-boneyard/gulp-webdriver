@@ -9,8 +9,6 @@ exports.config = {
     // NPM script (see https://docs.npmjs.com/cli/run-script) then the current working
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
-
-    runner: 'local',
     path: '/wd/hub',
     specs: [
         './test/specs/**/*.js'
@@ -45,14 +43,7 @@ exports.config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: silent | verbose | command | data | result | error
-    sync: true,
     logLevel: 'info',
-    //
-    // Enables colors for log output.
-    coloredLogs: true,
-    //
-    // Saves a screenshot to a given path if a command fails.
-    screenshotPath: './errorShots/',
     //
     // Set a base URL in order to shorten url command calls. If your url parameter starts
     // with "/", then the base url gets prepended.
@@ -108,7 +99,7 @@ exports.config = {
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
     mochaOpts: {
-        compilers: ['js:@babel/register'],
+        require: ['@babel/register'],
         ui: 'bdd',
         timeout: 60 * 1000
     }

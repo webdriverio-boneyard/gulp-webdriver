@@ -1,7 +1,8 @@
-import logger from '@wdio/logger'
-const log = logger('gulp-webdriver')
 const colors = require('ansi-colors')
 const { series } = require('gulp')
+
+const logger = require('@wdio/logger').default
+const log = logger('gulp-webdriver')
 
 const options = {
     src: 'src',
