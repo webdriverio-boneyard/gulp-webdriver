@@ -6,6 +6,6 @@ describe('gulp-webdriverjs test', () => {
 
     it('checks if title contains the search query', () => {
         browser.url('/')
-        expect(browser).toHaveTitle('WebdriverIO · Next-gen browser automation test framework for Node.js')
+        expect(browser).toHaveTitle('WebdriverIO · Next-gen browser and mobile automation test framework for Node.js | WebdriverIO')
     })
 })
