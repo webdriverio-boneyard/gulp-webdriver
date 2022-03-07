@@ -15,7 +15,7 @@
     "pretest": "npm run eslint && npm run compile"
   },
   "engines": {
-    "node": ">=8.11.2"
+    "node": ">=12"
   },
   "keywords": [
     "webdriverio",
