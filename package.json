@@ -69,7 +69,7 @@
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-eslint": "^6.0.0",
-    "mocha": "^7.1.1",
+    "mocha": "^10.2.0",
     "run-sequence": "^2.2.1",
     "selenium-standalone": "^6.17.0"
   }
